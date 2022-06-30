@@ -1,0 +1,27 @@
+// This is the hdl file for 3 to 8 bit decoder
+// By : CS20B058, CS20B063, CS20B046
+
+CHIP decoder{
+    IN x0,x1,x2;
+    OUT y0,y1,y2,y3,y4,y5,y6,y7;
+
+
+    PARTS:
+    Not (in= x0, out= notx0);
+    Not (in= x1, out= notx1);
+    Not (in= x2, out= notx2);
+
+    And (a= notx1, b= notx2, out= w1);
+    And (a= notx1, b= x2, out= w2);
+    And (a= x1, b= notx2, out= w3);
+    And (a= x1, b= x2, out= w4);
+
+    And (a= notx0, b= w1, out= y0);
+    And (a= notx0, b= w2, out= y1);
+    And (a= notx0, b= w3, out= y2);
+    And (a= notx0, b= w4, out= y3);
+    And (a= x0, b= w1, out= y4);
+    And (a= x0, b= w2, out= y5);
+    And (a= x0, b= w3, out= y6);
+    And (a= x0, b= w4, out= y7);
+}

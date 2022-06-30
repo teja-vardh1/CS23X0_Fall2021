@@ -1,0 +1,11 @@
+CHIP encoder {
+    IN a,b,c,d;
+    OUT e,f;
+
+    PARTS:
+    Not(in=a,out=nota);
+    Not(in=b,out=notb);
+    Not(in=c,out=notc);
+    And(a=nota,b=notb,out=e);
+    And(a=nota,b=notc,out=f);
+    }

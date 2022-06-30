@@ -1,0 +1,19 @@
+CHIP q1{
+    IN w,x,y,z;
+    OUT out;
+    
+    PARTS:
+    Not(in=w, out=notw);
+    Not(in=x, out=notx);
+    Not(in=y, out=noty);
+    Not(in=z, out=notz);
+    And(a=notw, b=notx, out=w1);
+    And(a=w1, b=z, out=w2);     //final
+    And(a=noty, b=notz, out=w3);
+    And(a=w3, b=x, out=w4);   //final
+    And(a=y, b=z, out=w5);
+    And(a=notz, b=w, out=w6);
+    Or(a=w2, b=w4, out=w7);
+    Or(a=w7, b=w5, out=w8);
+    Or(a=w8, b=w6, out=out);
+}
