@@ -1,0 +1,37 @@
+CHIP prioritymultiplexor{
+    IN x00,x01,x10,x11,x20,x21,x30,x31,r1,r2,r3,r4;
+    OUT y0,y1;
+
+    PARTS:
+    Not(in=r1,out=notr1);
+    Not(in=r2,out=notr2);
+    Not(in=r3,out=notr3);
+    And(a=notr1,b=notr2,out=s1);
+    And(a=notr1,b=notr3,out=k1);
+    And(a=notr1,b=r2,out=k2);
+    Or(a=k1,b=k2,out=s0);
+
+    Not(in=s1, out=nots1);
+    Not(in=s0, out=nots0);
+    
+    And(a=nots1, b=nots0, out=m0);
+    And(a=nots1, b=s0, out=m1);
+    And(a=s1, b=nots0, out=m2);
+    And(a=s1, b=s0, out=m3);
+
+    And(a=m0,b=x01,out=w0);
+    And(a=m1,b=x11,out=w1);
+    And(a=m2,b=x21,out=w2);
+    And(a=m3,b=x31,out=w3);
+    Or(a=w0,b=w1,out=w4);
+    Or(a=w2,b=w3,out=w5);
+    Or(a=w4,b=w5,out=y1);
+
+    And(a=m0,b=x00,out=w6);
+    And(a=m1,b=x10,out=w7);
+    And(a=m2,b=x20,out=w8);
+    And(a=m3,b=x30,out=w9);
+    Or(a=w6,b=w7,out=w10);
+    Or(a=w8,b=w9,out=w11);
+    Or(a=w10,b=w11,out=y0);
+}

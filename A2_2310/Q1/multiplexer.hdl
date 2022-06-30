@@ -1,0 +1,29 @@
+CHIP multiplexer{
+    IN x00,x01,x10,x11,x20,x21,x30,x31,s0,s1;
+    OUT y0,y1;
+
+    PARTS:
+    Not(in=s1, out=nots1);
+    Not(in=s0, out=nots0);
+    
+    And(a=nots1, b=nots0, out=m0);
+    And(a=nots1, b=s0, out=m1);
+    And(a=s1, b=nots0, out=m2);
+    And(a=s1, b=s0, out=m3);
+
+    And(a=m0,b=x01,out=w0);
+    And(a=m1,b=x11,out=w1);
+    And(a=m2,b=x21,out=w2);
+    And(a=m3,b=x31,out=w3);
+    Or(a=w0,b=w1,out=w4);
+    Or(a=w2,b=w3,out=w5);
+    Or(a=w4,b=w5,out=y1);
+
+    And(a=m0,b=x00,out=w6);
+    And(a=m1,b=x10,out=w7);
+    And(a=m2,b=x20,out=w8);
+    And(a=m3,b=x30,out=w9);
+    Or(a=w6,b=w7,out=w10);
+    Or(a=w8,b=w9,out=w11);
+    Or(a=w10,b=w11,out=y0);
+}

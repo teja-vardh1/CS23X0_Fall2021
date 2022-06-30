@@ -1,0 +1,54 @@
+// This is the hdl file for 2-bit 1-to-8 demultiplexer
+// By : CS20B058,CS20B063,CS20B046
+
+CHIP demux {
+    IN x0,x1,s0,s1,s2;
+    OUT y01,y00,y11,y10,y21,y20,y31,y30,y41,y40,y51,y50,y61,y60,y71,y70;
+
+    PARTS:
+    Not (in= s0, out= nots0);
+    Not (in= s1, out= nots1);
+    Not (in= s2, out= nots2);
+
+//mi where i=0,1,2,...7 are minterms
+
+    And (a= nots1, b= nots0, out= h0);
+    And (a= nots1, b= s0, out= h1);
+    And (a= s1, b= nots0, out= h2);
+    And (a= s1, b= s0, out= h3);
+
+    And (a= nots2, b= h0, out= m0);
+    And (a= nots2, b= h1, out= m1);
+    And (a= nots2, b= h2, out= m2);
+    And (a= nots2, b= h3, out= m3);
+    And (a= s2, b= h0, out= m4);
+    And (a= s2, b= h1, out= m5);
+    And (a= s2, b= h2, out= m6);
+    And (a= s2, b= h3, out= m7);
+
+
+
+    And (a= m0, b= x1, out= y01);
+    And (a= m0, b= x0, out= y00);
+
+    And (a= m1, b= x1, out= y11);
+    And (a= m1, b= x0, out= y10);
+
+    And (a= m2, b= x1, out= y21);
+    And (a= m2, b= x0, out= y20);
+
+    And (a= m3, b= x1, out= y31);
+    And (a= m3, b= x0, out= y30);
+
+    And (a= m4, b= x1, out= y41);
+    And (a= m4, b= x0, out= y40);
+
+    And (a= m5, b= x1, out= y51);
+    And (a= m5, b= x0, out= y50);
+
+    And (a= m6, b= x1, out= y61);
+    And (a= m6, b= x0, out= y60);
+
+    And (a= m7, b= x1, out= y71);
+    And (a= m7, b= x0, out= y70);
+}

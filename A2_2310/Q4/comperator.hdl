@@ -1,0 +1,66 @@
+CHIP comperator {
+    IN x7,x6,x5,x4,x3,x2,x1,x0,y7,y6,y5,y4,y3,y2,y1,y0;
+    OUT Z;
+
+    PARTS:
+    Not(in=x0,out=notx0);
+    Not(in=x1,out=notx1);
+    Not(in=x2,out=notx2);
+    Not(in=x3,out=notx3);
+    Not(in=x4,out=notx4);
+    Not(in=x5,out=notx5);
+    Not(in=x6,out=notx6);
+    Not(in=x7,out=notx7);
+
+    Not(in=y0,out=noty0);
+    Not(in=y1,out=noty1);
+    Not(in=y2,out=noty2);
+    Not(in=y3,out=noty3);
+    Not(in=y4,out=noty4);
+    Not(in=y5,out=noty5);
+    Not(in=y6,out=noty6);
+    Not(in=y7,out=noty7);
+
+    And(a=x0,b=y0,out=w1);
+    And(a=notx0,b=noty0,out=w2);
+    Or(a=w1,b=w2,out=f1);
+
+    And(a=x1,b=y1,out=w3);
+    And(a=notx1,b=noty1,out=w4);
+    Or(a=w3,b=w4,out=f2);
+
+    And(a=x2,b=y2,out=w5);
+    And(a=notx2,b=noty2,out=w6);
+    Or(a=w5,b=w6,out=f3);
+
+    And(a=x3,b=y3,out=w7);
+    And(a=notx3,b=noty3,out=w8);
+    Or(a=w7,b=w8,out=f4);
+
+    And(a=x4,b=y4,out=w9);
+    And(a=notx4,b=noty4,out=w10);
+    Or(a=w9,b=w10,out=f5);
+
+    And(a=x5,b=y5,out=w11);
+    And(a=notx5,b=noty5,out=w12);
+    Or(a=w11,b=w12,out=f6);
+
+    And(a=x6,b=y6,out=w13);
+    And(a=notx6,b=noty6,out=w14);
+    Or(a=w13,b=w14,out=f7);
+
+    And(a=x7,b=y7,out=w15);
+    And(a=notx7,b=noty7,out=w16);
+    Or(a=w15,b=w16,out=f8);
+
+    And(a=f1,b=f2,out=f12);
+    And(a=f3,b=f4,out=f34);
+    And(a=f5,b=f6,out=f56);
+    And(a=f7,b=f8,out=f78);
+
+    And(a=f12,b=f34,out=f1234);
+    And(a=f56,b=f78,out=f5678);
+    And(a=f1234,b=f5678,out=Z);
+    
+
+} 
