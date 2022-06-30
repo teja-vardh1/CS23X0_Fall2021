@@ -1,0 +1,16 @@
+CHIP Overflow{
+IN p[16];
+OUT of;
+
+PARTS:
+
+Or(a=p[8], b=p[9], out=w1);
+Or(a=p[10], b=p[11], out=w2);
+Or(a=p[12], b=p[13], out=w3);
+Or(a=p[14], b=p[15], out=w4);
+
+Or(a=w1, b=w2, out=w5);
+Or(a=w3, b=w4, out=w6);
+
+Or(a=w5, b=w6, out=of);//overflow
+}

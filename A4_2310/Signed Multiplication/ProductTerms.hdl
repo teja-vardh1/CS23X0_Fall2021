@@ -1,0 +1,170 @@
+CHIP ProductTerms{
+    IN x[8], y[8];
+    OUT pp0[16], pp1[16], pp2[16], pp3[16], pp4[16], pp5[16], pp6[16], pp7[16], pp8[16];
+
+    //Generate product terms for reducers
+
+    PARTS:
+
+    And(a=x[0], b=y[0], out=pp0[0]);
+    And(a=x[1], b=y[0], out=pp0[1]);
+    And(a=x[2], b=y[0], out=pp0[2]);
+    And(a=x[3], b=y[0], out=pp0[3]);
+    And(a=x[4], b=y[0], out=pp0[4]);
+    And(a=x[5], b=y[0], out=pp0[5]);
+    And(a=x[6], b=y[0], out=pp0[6]);
+    And(a=x[7], b=y[0], out=pp0[7]);
+    And(a=x[7], b=y[0], out=pp0[8]);
+    And(a=x[7], b=y[0], out=pp0[9]);
+    And(a=x[7], b=y[0], out=pp0[10]);
+    And(a=x[7], b=y[0], out=pp0[11]);
+    And(a=x[7], b=y[0], out=pp0[12]);
+    And(a=x[7], b=y[0], out=pp0[13]);
+    And(a=x[7], b=y[0], out=pp0[14]);
+    And(a=x[7], b=y[0], out=pp0[15]);  //pp0 generated
+
+    Not(in=true, out=pp1[0]);
+    And(a=x[0], b=y[1], out=pp1[1]);
+    And(a=x[1], b=y[1], out=pp1[2]);
+    And(a=x[2], b=y[1], out=pp1[3]);
+    And(a=x[3], b=y[1], out=pp1[4]);
+    And(a=x[4], b=y[1], out=pp1[5]);
+    And(a=x[5], b=y[1], out=pp1[6]);
+    And(a=x[6], b=y[1], out=pp1[7]);
+    And(a=x[7], b=y[1], out=pp1[8]);
+    And(a=x[7], b=y[1], out=pp1[9]);
+    And(a=x[7], b=y[1], out=pp1[10]);
+    And(a=x[7], b=y[1], out=pp1[11]);
+    And(a=x[7], b=y[1], out=pp1[12]);
+    And(a=x[7], b=y[1], out=pp1[13]);
+    And(a=x[7], b=y[1], out=pp1[14]);
+    And(a=x[7], b=y[1], out=pp1[15]); //pp1 generated
+
+    Not(in=true, out=pp2[0]);
+    Not(in=true, out=pp2[1]);
+    And(a=x[0], b=y[2], out=pp2[2]);
+    And(a=x[1], b=y[2], out=pp2[3]);
+    And(a=x[2], b=y[2], out=pp2[4]);
+    And(a=x[3], b=y[2], out=pp2[5]);
+    And(a=x[4], b=y[2], out=pp2[6]);
+    And(a=x[5], b=y[2], out=pp2[7]);
+    And(a=x[6], b=y[2], out=pp2[8]);
+    And(a=x[7], b=y[2], out=pp2[9]);
+    And(a=x[7], b=y[2], out=pp2[10]);
+    And(a=x[7], b=y[2], out=pp2[11]);
+    And(a=x[7], b=y[2], out=pp2[12]);
+    And(a=x[7], b=y[2], out=pp2[13]);
+    And(a=x[7], b=y[2], out=pp2[14]);
+    And(a=x[7], b=y[2], out=pp2[15]); //pp2 generated
+
+    Not(in=true, out=pp3[0]);
+    Not(in=true, out=pp3[1]);
+    Not(in=true, out=pp3[2]);
+    And(a=x[0], b=y[3], out=pp3[3]);
+    And(a=x[1], b=y[3], out=pp3[4]);
+    And(a=x[2], b=y[3], out=pp3[5]);
+    And(a=x[3], b=y[3], out=pp3[6]);
+    And(a=x[4], b=y[3], out=pp3[7]);
+    And(a=x[5], b=y[3], out=pp3[8]);
+    And(a=x[6], b=y[3], out=pp3[9]);
+    And(a=x[7], b=y[3], out=pp3[10]);
+    And(a=x[7], b=y[3], out=pp3[11]);
+    And(a=x[7], b=y[3], out=pp3[12]);
+    And(a=x[7], b=y[3], out=pp3[13]);
+    And(a=x[7], b=y[3], out=pp3[14]);
+    And(a=x[7], b=y[3], out=pp3[15]); //pp3 generated
+
+    Not(in=true, out=pp4[0]);
+    Not(in=true, out=pp4[1]);
+    Not(in=true, out=pp4[2]);
+    Not(in=true, out=pp4[3]);
+    And(a=x[0], b=y[4], out=pp4[4]);
+    And(a=x[1], b=y[4], out=pp4[5]);
+    And(a=x[2], b=y[4], out=pp4[6]);
+    And(a=x[3], b=y[4], out=pp4[7]);
+    And(a=x[4], b=y[4], out=pp4[8]);
+    And(a=x[5], b=y[4], out=pp4[9]);
+    And(a=x[6], b=y[4], out=pp4[10]);
+    And(a=x[7], b=y[4], out=pp4[11]);
+    And(a=x[7], b=y[4], out=pp4[12]);
+    And(a=x[7], b=y[4], out=pp4[13]);
+    And(a=x[7], b=y[4], out=pp4[14]);
+    And(a=x[7], b=y[4], out=pp4[15]); //pp4 generated
+
+    Not(in=true, out=pp5[0]);
+    Not(in=true, out=pp5[1]);
+    Not(in=true, out=pp5[2]);
+    Not(in=true, out=pp5[3]);
+    Not(in=true, out=pp5[4]);
+    And(a=x[0], b=y[5], out=pp5[5]);
+    And(a=x[1], b=y[5], out=pp5[6]);
+    And(a=x[2], b=y[5], out=pp5[7]);
+    And(a=x[3], b=y[5], out=pp5[8]);
+    And(a=x[4], b=y[5], out=pp5[9]);
+    And(a=x[5], b=y[5], out=pp5[10]);
+    And(a=x[6], b=y[5], out=pp5[11]);
+    And(a=x[7], b=y[5], out=pp5[12]);
+    And(a=x[7], b=y[5], out=pp5[13]);
+    And(a=x[7], b=y[5], out=pp5[14]);
+    And(a=x[7], b=y[5], out=pp5[15]); //pp5 generated
+
+    Not(in=true, out=pp6[0]);
+    Not(in=true, out=pp6[1]);
+    Not(in=true, out=pp6[2]);
+    Not(in=true, out=pp6[3]);
+    Not(in=true, out=pp6[4]);
+    Not(in=true, out=pp6[5]);
+    And(a=x[0], b=y[6], out=pp6[6]);
+    And(a=x[1], b=y[6], out=pp6[7]);
+    And(a=x[2], b=y[6], out=pp6[8]);
+    And(a=x[3], b=y[6], out=pp6[9]);
+    And(a=x[4], b=y[6], out=pp6[10]);
+    And(a=x[5], b=y[6], out=pp6[11]);
+    And(a=x[6], b=y[6], out=pp6[12]);
+    And(a=x[7], b=y[6], out=pp6[13]);
+    And(a=x[7], b=y[6], out=pp6[14]);
+    And(a=x[7], b=y[6], out=pp6[15]); //pp6 generated
+
+    Not(in=true, out=pp7[0]);
+    Not(in=true, out=pp7[1]);
+    Not(in=true, out=pp7[2]);
+    Not(in=true, out=pp7[3]);
+    Not(in=true, out=pp7[4]);
+    Not(in=true, out=pp7[5]);
+    Not(in=true, out=pp7[6]);
+    And(a=x[0], b=y[7], out=w1);
+    Xor(a=w1, b=y[7], out=pp7[7]);
+    And(a=x[1], b=y[7], out=w2);
+    Xor(a=w2, b=y[7], out=pp7[8]);
+    And(a=x[2], b=y[7], out=w3);
+    Xor(a=w3, b=y[7], out=pp7[9]);
+    And(a=x[3], b=y[7], out=w4);
+    Xor(a=w4, b=y[7], out=pp7[10]);
+    And(a=x[4], b=y[7], out=w5);
+    Xor(a=w5, b=y[7], out=pp7[11]);
+    And(a=x[5], b=y[7], out=w6);
+    Xor(a=w6, b=y[7], out=pp7[12]);
+    And(a=x[6], b=y[7], out=w7);
+    Xor(a=w7, b=y[7], out=pp7[13]);
+    And(a=x[7], b=y[7], out=w8);
+    Xor(a=w8, b=y[7], out=pp7[14]);
+    And(a=x[7], b=y[7], out=w9);
+    Xor(a=w9, b=y[7], out=pp7[15]); //pp7 generated
+
+    Not(in=true, out=pp8[0]);
+    Not(in=true, out=pp8[1]);
+    Not(in=true, out=pp8[2]);
+    Not(in=true, out=pp8[3]); //pp8 generated
+    Not(in=true, out=pp8[4]);
+    Not(in=true, out=pp8[5]);
+    Not(in=true, out=pp8[6]);
+    And(a=y[7], b=true, out=pp8[7]);
+    Not(in=true, out=pp8[8]);
+    Not(in=true, out=pp8[9]);
+    Not(in=true, out=pp8[10]);
+    Not(in=true, out=pp8[11]);
+    Not(in=true, out=pp8[12]);
+    Not(in=true, out=pp8[13]);
+    Not(in=true, out=pp8[14]);
+    Not(in=true, out=pp8[15]); //pp8 generated
+}

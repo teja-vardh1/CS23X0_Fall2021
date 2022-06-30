@@ -1,0 +1,25 @@
+CHIP Signed{
+    IN a[8], b[8];
+    OUT product[8],of;
+    
+    PARTS:
+
+    ProductTerms(x=a, y=b, pp0=pp0, pp1=pp1, pp2=pp2, pp3=pp3, pp4=pp4, pp5=pp5, pp6=pp6, pp7=pp7, pp8=pp8);
+
+    reducer3to2(a=pp0, b=pp1, c=pp2, s=s0, carry=c0);
+    reducer3to2(a=pp3, b=pp4, c=pp5, s=s1, carry=c1);
+    reducer3to2(a=pp6, b=pp7, c=pp8, s=s2, carry=c2); // level 0
+
+    reducer3to2(a=s0, b=s1, c=s2, s=s3, carry=c3);
+    reducer3to2(a=c0, b=c1, c=c2, s=s4, carry=c4); //level 1
+
+    reducer3to2(a=s3, b=s4, c=c3, s=s5, carry=c5); //level 2
+
+    reducer3to2(a=c4, b=s5, c=c5, s=s6, carry=c6); //level 3
+
+    CLA416HO(a=s6, b=c6, add=false,  out=p); //product
+
+    Overflow(a=a[7], b=b[7], p=p, of=of);
+
+    And16(a=p, b=true, out[0..7]=product, out[8..15]=waste);
+}
