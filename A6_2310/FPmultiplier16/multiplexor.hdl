@@ -1,0 +1,16 @@
+CHIP multiplexor{
+    //CHIP Objective:7 bit 2-to-1 multiplexor
+    IN w[7],x[7],s0;
+    OUT out[7];
+
+    PARTS:
+   
+    minimux(a=w[0], b=x[0], s0=s0, c=out[0]);// give out[0]
+    minimux(a=w[1], b=x[1], s0=s0, c=out[1]);// give out[1]
+    minimux(a=w[2], b=x[2], s0=s0, c=out[2]);// give out[2]
+    minimux(a=w[3], b=x[3], s0=s0, c=out[3]);// give out[3]
+    minimux(a=w[4], b=x[4], s0=s0, c=out[4]);// give out[4]
+    minimux(a=w[5], b=x[5], s0=s0, c=out[5]);// give out[5]
+    minimux(a=w[6], b=x[6], s0=s0, c=out[6]);// give out[6]
+    
+}

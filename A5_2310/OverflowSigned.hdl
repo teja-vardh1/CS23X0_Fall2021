@@ -1,0 +1,35 @@
+CHIP OverflowSigned{
+    //generate overflow when the multiplication takes place between two 8 bit signed integers
+    IN a,b,p[16];
+    OUT of;
+    PARTS:
+    Xor(a=a, b=b, out=k1);
+
+    And(a=p[7], b=p[8], out=i1);
+    And(a=p[9], b=p[10], out=i2);
+    And(a=p[11], b=p[12], out=i3);
+    And(a=p[13], b=p[14], out=i4);
+    And(a=p[15], b=i1, out=i5);
+    And(a=i2, b=i3, out=i6);
+    And(a=i4, b=i5, out=i7);
+    And(a=i6, b=i7, out=i8);
+    Not(in=i8, out=i9);
+
+    And(a=k1, b=i9, out=j1); //gives overflow when product is negative
+
+    Not(in=k1, out=k2);
+
+    Or(a=p[7], b=p[8], out=w1);
+    Or(a=p[9], b=p[10], out=w2);
+    Or(a=p[11], b=p[12], out=w3);
+    Or(a=p[13], b=p[14], out=w4);
+    Or(a=p[15], b=w1, out=w5);
+    Or(a=w2, b=w3, out=w6);
+    Or(a=w4, b=w5, out=w7);
+    Or(a=w6, b=w7, out=w8);
+
+    And(a=k2, b=w8, out=j2); //gives overflow when product is positive
+
+
+    Or(a=j1, b=j2, out=of); //determines oveflow
+}

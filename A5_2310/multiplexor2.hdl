@@ -1,0 +1,58 @@
+CHIP multiplexor2{
+    //CHIP Objective:8 bit 2-to-1 multiplexor
+    IN w[8],x[8],s0;
+    OUT out[8];
+
+    PARTS:
+   
+    Not(in=s0, out=nots0);
+
+    And(a=nots0, b=w[0], out=a1);
+    And(a=s0, b=x[0], out=a2);
+
+    Or(a=a1, b=a2, out=out[0]);// give out[0]
+
+    And(a=nots0, b=w[1], out=b1);
+    And(a=s0, b=x[1], out=b2);
+
+    Or(a=b1, b=b2, out=out[1]);// give out[1]
+
+
+    And(a=nots0, b=w[2], out=c1);
+    And(a=s0, b=x[2], out=c2);
+
+    Or(a=c1, b=c2, out=out[2]);// give out[2]
+
+
+    And(a=nots0, b=w[3], out=d1);
+    And(a=s0, b=x[3], out=d2);
+
+    Or(a=d1, b=d2, out=out[3]);// give out[3]
+
+
+    And(a=nots0, b=w[4], out=e1);
+    And(a=s0, b=x[4], out=e2);
+
+    Or(a=e1, b=e2, out=out[4]);// give out[4]
+
+
+    And(a=nots0, b=w[5], out=f1);
+    And(a=s0, b=x[5], out=f2);
+
+    Or(a=f1, b=f2, out=out[5]);// give out[5]
+
+    And(a=nots0, b=w[6], out=g1);
+    And(a=s0, b=x[6], out=g2);
+
+    Or(a=g1, b=g2, out=out[6]);// give out[6]
+
+    And(a=nots0, b=w[7], out=h1);
+    And(a=s0, b=x[7], out=h2);
+
+    Or(a=h1, b=h2, out=out[7]);// give out[7]
+
+
+
+
+    
+}

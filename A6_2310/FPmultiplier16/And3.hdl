@@ -1,0 +1,10 @@
+CHIP And3{
+    //CHIP description:does AND operation three different bits
+    IN a,b,c;
+    OUT out;
+
+    PARTS:
+    And(a=a, b=b, out=w1);
+    And(a=c, b=w1, out=out);
+
+}

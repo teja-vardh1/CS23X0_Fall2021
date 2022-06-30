@@ -1,0 +1,12 @@
+CHIP Subtractor{
+    IN x[9],y[9];
+    OUT z[8];
+    //CHIP DESCRIPTION : subtraction of 2 9-bit numbers output 8 bits
+
+    PARTS:
+    
+    BLS4(bi=false, x1=x[0], x2=x[1], x3=x[2], x4=x[3], y1=y[0], y2=y[1], y3=y[2], y4=y[3], s1=z[0], s2=z[1], s3=z[2], s4=z[3], bo=q1);
+    
+    BLS4(bi=q1, x1=x[4], x2=x[5], x3=x[6], x4=x[7], y1=y[4], y2=y[5], y3=y[6], y4=y[7], s1=z[4], s2=z[5], s3=z[6], s4=z[7], bo=q2);
+    
+}

@@ -1,0 +1,30 @@
+CHIP ALU8{
+    IN x[8],y[8],sign,c2,c1,c0;
+    OUT z[8],overf,equal;
+
+    PARTS:
+    And8(x=x, y=y, out=and);//gives the result after and operation on 'x[8]' and 'y[8]'
+
+    Or8(x=x, y=y, out=or);//gives the result after or operation on 'x[8]' and 'y[8]'
+
+    Xor8(x=x, y=y, out=xor);//gives the result after xor operation on 'x[8]' and 'y[8]'
+
+    Add8(a=x, b=y, sign=sign, out=add, overflow=ofadd);//gives the result after adding 'x[8]' and 'y[8]'
+
+    Sub8(a=x, b=y, sign=sign, out=sub, overflow=ofsub);//gives the result after substracting 'y[8]' from 'x[8]'
+
+    Smul(a=x, b=y, product=signed, of=ofsmul);//gives the result after multipling 'x[8]' and 'y[8]' which are signed integers
+
+    Umul(a=x, b=y, product=unsigned, of=ofumul);//gives the result after multipling 'x[8]' and 'y[8]' which are unsigned integers
+
+    Equal(x=x, y=y, equal=equal);//gives 1 if the number are equal
+
+    multiplexor(w=false, x=and, y=or, z=xor, logical=m1, s0=c0, s1=c1);
+    multiplexor(w=add, x=sub, y=unsigned, z=signed, logical=m2, s0=c0, s1=c1);//two 8 bit 4-to-1 multiplexors
+
+    multiplexor2(w=m1, x=m2, s0=c2, out=z);//gives the final 8 bit desired product(8 bit 2-to-1 multiplexors)
+
+    multiplexor3(w=ofadd, x=ofsub, y=ofumul, z=ofsmul, of=oflow, s0=c0, s1=c1);//1bit 4-to-1 multiplexor
+    multiplexor4(x=false, y=oflow, s0=c2, of=overf);//gives the overflow
+
+}

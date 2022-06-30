@@ -1,0 +1,10 @@
+CHIP mux2to1{
+    IN z,a,b;
+    OUT out;
+
+    PARTS:
+    Not(in=z, out=nz);
+    And(a=z, b=b, out=k1);
+    And(a=nz, b=a, out=k2);
+    Or(a=k1, b=k2, out=out);
+}

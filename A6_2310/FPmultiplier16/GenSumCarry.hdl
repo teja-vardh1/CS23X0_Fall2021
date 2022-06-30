@@ -1,0 +1,15 @@
+CHIP GenSumCarry{
+    IN a,b,c;
+    OUT sum,carry;
+
+    //Generates sum and carry bits of 3 bits
+    PARTS:
+    Xor(a=a, b=b, out=s0);
+    Xor(a=s0, b=c, out=sum); //sum bit
+
+    And(a=a, b=b, out=c0);
+    And(a=b, b=c, out=c1);
+    And(a=c, b=a, out=c2);
+    Or(a=c0, b=c1, out=c3);
+    Or(a=c3, b=c2, out=carry); //carry bit
+}

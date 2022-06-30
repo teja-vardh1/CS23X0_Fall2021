@@ -1,0 +1,10 @@
+@16
+D=M
+@17
+D=D-M
+@END
+D;JGT
+D=-D
+(END)
+@18
+M=D

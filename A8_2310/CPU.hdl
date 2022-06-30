@@ -1,0 +1,26 @@
+CHIP CPU{
+    IN inM[16], instruction[16], reset;
+    OUT outM[16], writeM, addressM[6], pc[15];
+
+    PARTS:
+    Not(in =instruction[15], out=mux1);
+    mux-16bit-2-1(a=alu, b=instruction, z=mux1, out=Ain);   //for giving input to A register
+
+    Or(a=mux1, b=instruction[5], out=Abit);         //input for load Aregister
+    ARegister(in=Ain, load=Abit, out=A, out[0..5]=addressM);
+    
+    And(a=instruction[15], b=instruction[12], out=mux2);
+    mux-16bit-2-1(a=A, b=inM, z=mux2, out=y);
+
+    ALU(x=D, y=y, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], n0=instruction[6], out=alu, out=outM, zr=zr, ng=ng);
+
+    And(a=instruction[15], b=instruction[4], out=Dbit);
+    DRegister(in= alu, load=Dbit, out=D);
+
+    And(a=instruction[15], b=instruction[3], out=writeM);
+
+    LoadPc(ins=instruction, zr=zr, ng=ng, load=load);
+    Not(in=load, out=nload);
+
+    PC(in=A, load=load, inc=nload, reset=reset, out[0..14]=pc);
+}

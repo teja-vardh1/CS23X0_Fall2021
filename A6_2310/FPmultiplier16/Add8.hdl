@@ -1,0 +1,25 @@
+CHIP Add8{
+    //CHIP description:addition of two 8 bits integers
+    IN a[8],b[8],sign;
+    OUT out[8],overflow;
+
+    PARTS:
+    PG(a0=a[0],a1=a[1],a2=a[2],a3=a[3],d0=b[0],d1=b[1],d2=b[2],d3=b[3],pi=p0i,gi=g0i,sub=false);
+    PG(a0=a[4],a1=a[5],a2=a[6],a3=a[7],d0=b[4],d1=b[5],d2=b[6],d3=b[7],pi=p1i,gi=g1i,sub=false);
+
+    CL(c0=false,p0=p0i,p1=p1i,g0=g0i,g1=g1i,c4=c4,c8=c8);
+
+    CLA4(c=false,a0=a[0],a1=a[1],a2=a[2],a3=a[3],d0=b[0],d1=b[1],d2=b[2],d3=b[3],sub=false,c3=c3,s0=out[0],s1=out[1],s2=out[2],s3=out[3]);
+    CLA4(c=c4,a0=a[4],a1=a[5],a2=a[6],a3=a[7],d0=b[4],d1=b[5],d2=b[6],d3=b[7],sub=false,c3=c7,s0=out[4],s1=out[5],s2=out[6],s3=out[7]);  //gives the sum
+
+    Not(in=sign ,out=notsign);
+    Not(in=c7 ,out=notc7);
+    Not(in=c8 ,out=notc8);
+
+    And(a=notsign, b=c8, out=w1);
+    And(a=notc7, b=c8, out=w2);
+    And3(a=sign, b=c7, c=notc8, out=w3);
+
+    Or(a=w1, b=w2, out=w4);
+    Or(a=w3, b=w4, out=overflow); //gives the overflow
+}

@@ -1,0 +1,17 @@
+CHIP Hack{
+    IN x[16],y[16],zx,nx,zy,ny,f,n0;
+    OUT zr,ng,out[16];
+
+    PARTS:
+    mux-16bit-2-1(z=zx, a=x, b=false, out=x1);
+    mux-16bit-2-1(z=zy, a=y, b=false, out=y1);
+    complement(in=x1, n=nx, out=p);
+    complement(in=y1, n=ny, out=q);
+    and16(a=p, b=q, out=and);
+    CLA416HO(a=p, b=q, out=add, overflow=over);
+    mux-16bit-2-1(z=f, a=and, b=add, out=res);
+    complement(in=res, n=n0, out=final);
+    checkzero(in=final, zr=zr);
+    sign(a=final,out=ng);
+    and16(a=final, b=true, out=out);
+}

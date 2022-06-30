@@ -1,0 +1,17 @@
+CHIP multiplexor3{
+    //CHIP Objective:1 bit 4-to-1 multiplexor
+    IN w,x,y,z,s0,s1;
+    OUT of;
+
+    PARTS:
+    Not(in=s1, out=nots1);
+    Not(in=s0, out=nots0);
+    
+
+    And3(a=nots1, b=nots0, c=w, out=a1);
+    And3(a=nots1, b=s0, c=x, out=a2);
+    And3(a=s1, b=nots0, c=y, out=a3);
+    And3(a=s1, b=s0, c=z, out=a4);
+
+    Or4(a=a1, b=a2, c=a3, d=a4, out=of);// give of
+}

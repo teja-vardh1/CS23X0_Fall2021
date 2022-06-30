@@ -1,0 +1,21 @@
+CHIP Equal{
+  //CHIP description:gives 1 if the numbers are equal 0 if not
+  IN x[8],y[8];
+  OUT equal;
+
+  PARTS:
+  Xor(a=x[0], b=y[0], out=w1);
+  Xor(a=x[1], b=y[1], out=w2);
+  Xor(a=x[2], b=y[2], out=w3);
+  Xor(a=x[3], b=y[3], out=w4);
+  Xor(a=x[4], b=y[4], out=w5);
+  Xor(a=x[5], b=y[5], out=w6);
+  Xor(a=x[6], b=y[6], out=w7);
+  Xor(a=x[7], b=y[7], out=w8);
+
+  Or4(a=w1, b=w2, c=w3, d=w4, out=w9);
+  Or4(a=w5, b=w6, c=w7, d=w8, out=w10);
+
+  Or(a=w9, b=w10, out=notequal);
+  Not(in=notequal, out=equal);
+}

@@ -1,0 +1,66 @@
+CHIP multiplexor{
+    //CHIP Objective:8 bit 4-to-1 multiplexor
+    IN w[8],x[8],y[8],z[8],s0,s1;
+    OUT logical[8];
+
+    PARTS:
+    Not(in=s1, out=nots1);
+    Not(in=s0, out=nots0);
+    
+
+    And3(a=nots1, b=nots0, c=w[0], out=a1);
+    And3(a=nots1, b=s0, c=x[0], out=a2);
+    And3(a=s1, b=nots0, c=y[0], out=a3);
+    And3(a=s1, b=s0, c=z[0], out=a4);
+
+    Or4(a=a1, b=a2, c=a3, d=a4, out=logical[0]);// give logical[0]
+
+    And3(a=nots1, b=nots0, c=w[1], out=b1);
+    And3(a=nots1, b=s0, c=x[1], out=b2);
+    And3(a=s1, b=nots0, c=y[1], out=b3);
+    And3(a=s1, b=s0, c=z[1], out=b4);
+
+    Or4(a=b1, b=b2, c=b3, d=b4, out=logical[1]);// give logical[1]
+
+    And3(a=nots1, b=nots0, c=w[2], out=c1);
+    And3(a=nots1, b=s0, c=x[2], out=c2);
+    And3(a=s1, b=nots0, c=y[2], out=c3);
+    And3(a=s1, b=s0, c=z[2], out=c4);
+
+    Or4(a=c1, b=c2, c=c3, d=c4, out=logical[2]);// give logical[2]
+
+    And3(a=nots1, b=nots0, c=w[3], out=d1);
+    And3(a=nots1, b=s0, c=x[3], out=d2);
+    And3(a=s1, b=nots0, c=y[3], out=d3);
+    And3(a=s1, b=s0, c=z[3], out=d4);
+
+    Or4(a=d1, b=d2, c=d3, d=d4, out=logical[3]);// give logical[3]
+
+    And3(a=nots1, b=nots0, c=w[4], out=e1);
+    And3(a=nots1, b=s0, c=x[4], out=e2);
+    And3(a=s1, b=nots0, c=y[4], out=e3);
+    And3(a=s1, b=s0, c=z[4], out=e4);
+
+    Or4(a=e1, b=e2, c=e3, d=e4, out=logical[4]);// give logical[4]
+   
+    And3(a=nots1, b=nots0, c=w[5], out=f1);
+    And3(a=nots1, b=s0, c=x[5], out=f2);
+    And3(a=s1, b=nots0, c=y[5], out=f3);
+    And3(a=s1, b=s0, c=z[5], out=f4);
+
+    Or4(a=f1, b=f2, c=f3, d=f4, out=logical[5]);// give logical[5]
+
+    And3(a=nots1, b=nots0, c=w[6], out=g1);
+    And3(a=nots1, b=s0, c=x[6], out=g2);
+    And3(a=s1, b=nots0, c=y[6], out=g3);
+    And3(a=s1, b=s0, c=z[6], out=g4);
+
+    Or4(a=g1, b=g2, c=g3, d=g4, out=logical[6]);// give logical[6]
+
+    And3(a=nots1, b=nots0, c=w[7], out=h1);
+    And3(a=nots1, b=s0, c=x[7], out=h2);
+    And3(a=s1, b=nots0, c=y[7], out=h3);
+    And3(a=s1, b=s0, c=z[7], out=h4);
+
+    Or4(a=h1, b=h2, c=h3, d=h4, out=logical[7]);// give logical[7]
+}

@@ -1,0 +1,47 @@
+CHIP LoadPc{
+    IN ins[16],zr,ng;
+    OUT load;
+    PARTS:
+    Not(in=zr, out=nzr);
+    Not(in=ng, out=nng);
+    Not(in=ins[0], out=ins0);
+    Not(in=ins[1], out=ins1);
+    Not(in=ins[2], out=ins2);
+
+    And(a=ins[2], b=ins[1], out=a1);
+    And(a=a1, b=ins[0], out=JMP);
+    
+    And(a=ins1, b=ins2, out=a2);
+    And(a=ins[0], b=a2, out=a3);
+    And(a=nzr, b=nng, out=a4);
+    And(a=a4, b=a3, out=JG);
+    And(a=JG,b=nzr,out=JGT);
+
+    And(a=ins2, b=ins[1], out=a5);
+    And(a=a5, b=ins0, out=a6);
+    And(a=a6, b=zr, out=JEQ);
+
+    And(a=a5, b=ins[0], out=a7);
+    And(a=a7, b=nng, out=JGE);
+
+    And(a=ins[2], b=ins1, out=a9);
+    And(a=a9, b=ins0, out=a10);
+    And(a=a10, b=nzr, out=a11);
+    And(a=a11, b=ng, out=JLT);
+
+    And(a=a9, b=ins[0], out=a12);
+    And(a=a12, b=nzr, out=JNE);
+
+    And(a=a1, b=ins0, out=a13);
+    Or(a=zr, b=ng, out=a14);
+    And(a=a14, b=a13, out=JLE);
+
+    Or(a=JMP, b=JGE, out=l1);
+    Or(a=l1, b=JGT, out=l2);
+    Or(a=l2, b=JEQ, out=l3);
+    Or(a=l3, b=JNE, out=l4);
+    Or(a=l4, b=JLE, out=l5);
+    Or(a=l5, b=JLT, out=load1);
+
+    And(a=load1, b=ins[15], out=load);
+}

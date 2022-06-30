@@ -1,0 +1,14 @@
+CHIP multiplexor4{
+    //CHIP Objective:1 bit 2-to-1 multiplexor
+    IN x,y,s0;
+    OUT of;
+
+    PARTS:
+    Not(in=s0, out=nots0);
+    
+    And(a=nots0, b=x, out=a1);
+    And(a=s0, b=y, out=a2);
+
+
+    Or(a=a1, b=a2, out=of);// give of
+}

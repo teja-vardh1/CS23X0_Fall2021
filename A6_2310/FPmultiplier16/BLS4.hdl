@@ -1,0 +1,56 @@
+CHIP BLS4{
+    IN bi,x1,x2,x3,x4,y1,y2,y3,y4;
+    OUT s1,s2,s3,s4,bo;
+
+    PARTS:
+    Not(in=x1, out=notx1);
+    Not(in=x2, out=notx2);
+    Not(in=x3, out=notx3);
+    Not(in=x4, out=notx4); //negation of bits
+
+    Xor(a=x1, b=y1, out=p1);
+    Xor(a=x2, b=y2, out=p2);
+    Xor(a=x3, b=y3, out=p3);
+    Xor(a=x4, b=y4, out=p4);  
+
+    Not(in=p1, out=notp1);
+    Not(in=p2, out=notp2);
+    Not(in=p3, out=notp3);
+    Not(in=p4, out=notp4); //propagate terms
+
+    And(a=notx1, b=y1, out=g1);
+    And(a=notx2, b=y2, out=g2);
+    And(a=notx3, b=y3, out=g3);
+    And(a=notx4, b=y4, out=g4); //generate terms
+
+
+    And(a=notp1, b=bi, out=w1);
+    Or(a=w1, b=g1, out=b1); //borrow
+
+    And(a=notp2, b=w1, out=w2);
+    And(a=notp2, b=g1, out=z2);
+    Or(a=w2, b=z2, out=q1);
+    Or(a=q1, b=g2, out=b2); //borrow
+
+    And(a=notp3, b=w2, out=w3);
+    And(a=notp3, b=z2, out=z3);
+    And(a=notp3, b=g2, out=k3);
+    Or(a=w3, b=z3, out=q2);
+    Or(a=k3, b=g3, out=q3);
+    Or(a=q2, b=q3, out=b3); //borrow
+
+    And(a=notp4, b=w3, out=w4);
+    And(a=notp4, b=z3, out=z4);
+    And(a=notp4, b=k3, out=k4);
+    And(a=notp4, b=g3, out=l4);
+    Or(a=w4, b=z4, out=q4);
+    Or(a=k4, b=l4, out=q5);
+    Or(a=q4, b=q5, out=q6);
+    Or(a=q6, b=g4, out=bo); //borrows
+
+
+    Xor(a=p1, b=bi, out=s1);
+    Xor(a=p2, b=b1, out=s2);
+    Xor(a=p3, b=b2, out=s3);
+    Xor(a=p4, b=b3, out=s4); //final result generated
+}

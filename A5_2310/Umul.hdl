@@ -1,0 +1,25 @@
+CHIP Umul{
+    IN a[8],b[8];
+    OUT product[8],of;
+
+    PARTS:
+
+    ProductTermsUnsigned(x=a, y=b, pp0=pp0, pp1=pp1, pp2=pp2, pp3=pp3, pp4=pp4, pp5=pp5, pp6=pp6, pp7=pp7);
+    //product terms are generated
+
+    reducer3to2(a=pp0, b=pp1, c=pp2, s=s0, carry=c0);
+    reducer3to2(a=pp3, b=pp4, c=pp5, s=s1, carry=c1); // level 0
+
+    reducer3to2(a=pp6, b=pp7, c=c0, s=s2, carry=c2);
+    reducer3to2(a=c1, b=s0, c=s1, s=s3, carry=c3); //level 1
+
+    reducer3to2(a=s2, b=c2, c=s3, s=s4, carry=c4); //level 2
+
+    reducer3to2(a=s4, b=c4, c=c3, s=s5, carry=c5); //level 3
+
+    CLA416HO(a=s5, b=c5, add=false, out=p); //final product
+
+    OverflowUnsigned(p=p, of=of);
+
+    And16(a=p, b=true, out[0..7]=product, out[8..15]=waste);
+}

@@ -1,0 +1,14 @@
+CHIP minimux{
+   
+    IN a,b,s0;
+    OUT c;
+
+    PARTS:
+   
+    Not(in=s0, out=nots0);
+
+    And(a=nots0, b=a, out=w1);
+    And(a=s0, b=b, out=w2);
+
+    Or(a=w1, b=w2, out=c);
+}

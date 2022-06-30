@@ -1,0 +1,40 @@
+CHIP PG{
+   //generate pi,gi of respective carry bits
+   IN a0,a1,a2,a3,d0,d1,d2,d3,sub;
+   OUT pi,gi;
+   
+   PARTS:
+
+   Xor(a=d0, b=sub, out=b0);
+   Xor(a=d1, b=sub, out=b1);
+   Xor(a=d2, b=sub, out=b2);
+   Xor(a=d3, b=sub, out=b3);
+
+
+   Xor(a=a0,b=b0,out=p0);
+   And(a=a0,b=b0,out=g0);
+
+   Xor(a=a1,b=b1,out=p1);
+   And(a=a1,b=b1,out=g1);
+
+   Xor(a=a2,b=b2,out=p2);
+   And(a=a2,b=b2,out=g2);
+
+   Xor(a=a3,b=b3,out=p3);
+   And(a=a3,b=b3,out=g3);
+
+  And(a=p0,b=p1,out=f1); 
+  And(a=p2,b=p3,out=f2); 
+  And(a=f1,b=f2,out=pi);
+
+  And(a=p1,b=g0,out=f3);
+  And(a=f2,b=f3,out=t1);
+
+  And(a=f2,b=g1,out=t2);
+  
+  And(a=p3,b=g2,out=t3);
+
+  Or(a=t1,b=t2,out=t4);
+  Or(a=t3,b=g3,out=t5);
+  Or(a=t5,b=t4,out=gi);
+  }
