@@ -1,0 +1,48 @@
+CHIP CLA4{
+    IN c,a0,a1,a2,a3,d0,d1,d2,d3,sub;
+    OUT s0,s1,s2,s3,c4;
+
+    PARTS:
+    Xor(a=d0, b=sub, out=b0);
+    Xor(a=d1, b=sub, out=b1);
+    Xor(a=d2, b=sub, out=b2);
+    Xor(a=d3, b=sub, out=b3);
+
+    And(a=a0, b=b0, out=g0);
+    And(a=a1, b=b1, out=g1);
+    And(a=a2, b=b2, out=g2);
+    And(a=a3, b=b3, out=g3);
+
+    Xor(a=a0, b=b0, out=p0);
+    Xor(a=a1, b=b1, out=p1);
+    Xor(a=a2, b=b2, out=p2);
+    Xor(a=a3, b=b3, out=p3);
+
+    Xor(a=p0, b=c, out=s0);
+    And(a=p0, b=c, out=c10);
+    Or(a=c10, b=g0, out=c1);
+
+    Xor(a=p1, b=c1, out=s1);
+    And(a=p1, b=c10, out=c20);
+    And(a=p1, b=g0, out=c21);
+    Or(a=c21, b=c20, out=c22);
+    Or(a=c22, b=g1, out=c2);
+
+    Xor(a=p2, b=c2, out=s2);
+    And(a=p2, b=c20, out=c30);
+    And(a=p2, b=c21, out=c31);
+    And(a=p2, b=g1, out=c32);
+    Or(a=c30, b=c31, out=c33);
+    Or(a=c33, b=c32, out=c34);
+    Or(a=c34, b=g2, out=c3);
+
+    Xor(a=p3, b=c3, out=s3);
+    And(a=p3, b=c30, out=c40);
+    And(a=p3, b=c31, out=c41);
+    And(a=p3, b=c32, out=c42);
+    And(a=p3, b=g2, out=c43);
+    Or(a=c40, b=c41, out=c44);
+    Or(a=c42, b=c43, out=c45);
+    Or(a=c44, b=c45, out=c46);
+    Or(a=c46, b=g3, out=c4);
+}

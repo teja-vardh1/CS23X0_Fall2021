@@ -1,0 +1,17 @@
+CHIP CLA416HO{
+    IN a[16],b[16],add;
+    OUT overflow,out[16];
+
+    PARTS:
+    PG(a0=a[0],a1=a[1],a2=a[2],a3=a[3],d0=b[0],d1=b[1],d2=b[2],d3=b[3],pi=p0i,gi=g0i,sub=add);
+    PG(a0=a[4],a1=a[5],a2=a[6],a3=a[7],d0=b[4],d1=b[5],d2=b[6],d3=b[7],pi=p1i,gi=g1i,sub=add);
+    PG(a0=a[8],a1=a[9],a2=a[10],a3=a[11],d0=b[8],d1=b[9],d2=b[10],d3=b[11],pi=p2i,gi=g2i,sub=add);
+    PG(a0=a[12],a1=a[13],a2=a[14],a3=a[15],d0=b[12],d1=b[13],d2=b[14],d3=b[15],pi=p3i,gi=g3i,sub=add);
+    
+    CL(c0=add,p0=p0i,p1=p1i,p2=p2i,p3=p3i,g0=g0i,g1=g1i,g2=g2i,g3=g3i,c4=c4,c8=c8,c12=c12,c16=overflow);
+
+    CLA4(c=add,a0=a[0],a1=a[1],a2=a[2],a3=a[3],d0=b[0],d1=b[1],d2=b[2],d3=b[3],sub=add,c3=c3,s0=out[0],s1=out[1],s2=out[2],s3=out[3]);
+    CLA4(c=c4,a0=a[4],a1=a[5],a2=a[6],a3=a[7],d0=b[4],d1=b[5],d2=b[6],d3=b[7],sub=add,c3=c7,s0=out[4],s1=out[5],s2=out[6],s3=out[7]);
+    CLA4(c=c8,a0=a[8],a1=a[9],a2=a[10],a3=a[11],d0=b[8],d1=b[9],d2=b[10],d3=b[11],sub=add,c3=c11,s0=out[8],s1=out[9],s2=out[10],s3=out[11]);
+    CLA4(c=c12,a0=a[12],a1=a[13],a2=a[14],a3=a[15],d0=b[12],d1=b[13],d2=b[14],d3=b[15],sub=add,c3=c15,s0=out[12],s1=out[13],s2=out[14],s3=out[15]);
+}
